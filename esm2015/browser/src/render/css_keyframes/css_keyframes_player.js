@@ -11,7 +11,7 @@ const DEFAULT_EASING = 'linear';
 /** @type {?} */
 const ANIMATION_END_EVENT = 'animationend';
 /** @enum {number} */
-const AnimatorControlState = {
+var AnimatorControlState = {
     INITIALIZED: 1, STARTED: 2, FINISHED: 3, DESTROYED: 4,
 };
 export { AnimatorControlState };

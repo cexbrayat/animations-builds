@@ -1,5 +1,5 @@
 /**
- * @license Angular v6.1.0-rc.3-1a985725e1
+ * @license Angular v7.0.0-beta.4-51c0d9cae9
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -10,7 +10,7 @@
 }(this, (function (exports) { 'use strict';
 
 /**
- * @license Angular v6.1.0-rc.3-1a985725e1
+ * @license Angular v7.0.0-beta.4-51c0d9cae9
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -19,31 +19,42 @@
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
- * AnimationBuilder is an injectable service that is available when the {\@link
- * BrowserAnimationsModule BrowserAnimationsModule} or {\@link NoopAnimationsModule
- * NoopAnimationsModule} modules are used within an application.
+ * An injectable service that produces an animation sequence programmatically within an
+ * Angular component or directive.
+ * Provided by the `BrowserAnimationsModule` or `NoopAnimationsModule`.
  *
- * The purpose if this service is to produce an animation sequence programmatically within an
- * angular component or directive.
+ * \@usageNotes
  *
- * Programmatic animations are first built and then a player is created when the build animation is
- * attached to an element.
+ * To use this service, add it to your component or directive as a dependency.
+ * The service is instantiated along with your component.
+ *
+ * Apps do not typically need to create their own animation players, but if you
+ * do need to, follow these steps:
+ *
+ * 1. Use the `build()` method to create a programmatic animation using the
+ * `animate()` function. The method returns an `AnimationFactory` instance.
+ *
+ * 2. Use the factory object to create an `AnimationPlayer` and attach it to a DOM element.
+ *
+ * 3. Use the player object to control the animation programmatically.
+ *
+ * For example:
  *
  * ```ts
- * // remember to include the BrowserAnimationsModule module for this to work...
+ * // import the service from BrowserAnimationsModule
  * import {AnimationBuilder} from '\@angular/animations';
- *
+ * // require the service as a dependency
  * class MyCmp {
  *   constructor(private _builder: AnimationBuilder) {}
  *
  *   makeAnimation(element: any) {
- *     // first build the animation
+ *     // first define a reusable animation
  *     const myAnimation = this._builder.build([
  *       style({ width: 0 }),
  *       animate(1000, style({ width: '100px' }))
  *     ]);
  *
- *     // then create a player from it
+ *     // use the returned factory object to create a player
  *     const player = myAnimation.create(element);
  *
  *     player.play();
@@ -51,11 +62,6 @@
  * }
  * ```
  *
- * When an animation is built an instance of {\@link AnimationFactory AnimationFactory} will be
- * returned. Using that an {\@link AnimationPlayer AnimationPlayer} can be created which can then be
- * used to start the animation.
- *
- * \@experimental Animation support is experimental.
  * @abstract
  */
 var AnimationBuilder = /** @class */ (function () {
@@ -64,10 +70,8 @@ var AnimationBuilder = /** @class */ (function () {
     return AnimationBuilder;
 }());
 /**
- * An instance of `AnimationFactory` is returned from {\@link AnimationBuilder#build
- * AnimationBuilder.build}.
+ * A factory object returned from the `AnimationBuilder`.`build()` method.
  *
- * \@experimental Animation support is experimental.
  * @abstract
  */
 var AnimationFactory = /** @class */ (function () {
@@ -1026,16 +1030,26 @@ function scheduleMicroTask(cb) {
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
- * AnimationPlayer controls an animation sequence that was produced from a programmatic animation.
- * (see {\@link AnimationBuilder AnimationBuilder} for more information on how to create programmatic
- * animations.)
+ * Provides programmatic control of a reusable animation sequence,
+ * built using the `build()` method of `AnimationBuilder`. The `build()` method
+ * returns a factory, whose `create()` method instantiates and initializes this interface.
  *
- * \@experimental Animation support is experimental.
+ * @see `AnimationBuilder`
+ * @see `AnimationFactory`
+ * @see `animate()`
+ *
  * @record
  */
 
 /**
- * \@experimental Animation support is experimental.
+ * An empty programmatic controller for reusable animations.
+ * Used internally when animations are disabled, to avoid
+ * checking for the null case when an animation player is expected.
+ *
+ * @see `animate()`
+ * @see `AnimationPlayer`
+ * @see `GroupPlayer`
+ *
  */
 var NoopAnimationPlayer = /** @class */ (function () {
     function NoopAnimationPlayer(duration, delay) {
@@ -1186,14 +1200,14 @@ var NoopAnimationPlayer = /** @class */ (function () {
      */
     function () { };
     /**
-     * @param {?} p
+     * @param {?} position
      * @return {?}
      */
     NoopAnimationPlayer.prototype.setPosition = /**
-     * @param {?} p
+     * @param {?} position
      * @return {?}
      */
-    function (p) { };
+    function (position) { };
     /**
      * @return {?}
      */
@@ -1231,6 +1245,14 @@ var NoopAnimationPlayer = /** @class */ (function () {
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * A programmatic controller for a group of reusable animations.
+ * Used internally to control animations.
+ *
+ * @see `AnimationPlayer`
+ * @see `{\@link animations/group group()}`
+ *
  */
 var AnimationGroupPlayer = /** @class */ (function () {
     function AnimationGroupPlayer(_players) {

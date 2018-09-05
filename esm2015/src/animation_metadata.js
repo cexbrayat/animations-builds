@@ -15,7 +15,7 @@
  */
 export function ɵStyleData() { }
 /** @enum {number} */
-const AnimationMetadataType = {
+var AnimationMetadataType = {
     /**
        * Associates a named animation state with a set of CSS styles.
        * See `state()`

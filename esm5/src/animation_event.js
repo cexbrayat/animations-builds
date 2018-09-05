@@ -42,18 +42,40 @@
  * @record
  */
 export function AnimationEvent() { }
-/** @type {?} */
+/**
+ * The name of the state from which the animation is triggered.
+ * @type {?}
+ */
 AnimationEvent.prototype.fromState;
-/** @type {?} */
+/**
+ * The name of the state in which the animation completes.
+ * @type {?}
+ */
 AnimationEvent.prototype.toState;
-/** @type {?} */
+/**
+ * The time it takes the animation to complete, in milliseconds.
+ * @type {?}
+ */
 AnimationEvent.prototype.totalTime;
-/** @type {?} */
+/**
+ * The animation phase in which the callback was invoked, one of
+ * "start" or "done".
+ * @type {?}
+ */
 AnimationEvent.prototype.phaseName;
-/** @type {?} */
+/**
+ * The element to which the animation is attached.
+ * @type {?}
+ */
 AnimationEvent.prototype.element;
-/** @type {?} */
+/**
+ * Internal.
+ * @type {?}
+ */
 AnimationEvent.prototype.triggerName;
-/** @type {?} */
+/**
+ * Internal.
+ * @type {?}
+ */
 AnimationEvent.prototype.disabled;
 //# sourceMappingURL=animation_event.js.map

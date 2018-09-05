@@ -10,6 +10,14 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { scheduleMicroTask } from '../util';
+/**
+ * A programmatic controller for a group of reusable animations.
+ * Used internally to control animations.
+ *
+ * @see `AnimationPlayer`
+ * @see `{\@link animations/group group()}`
+ *
+ */
 export class AnimationGroupPlayer {
     /**
      * @param {?} _players

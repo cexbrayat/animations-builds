@@ -4,58 +4,129 @@
  */
 import { scheduleMicroTask } from '../util';
 /**
- * AnimationPlayer controls an animation sequence that was produced from a programmatic animation.
- * (see {\@link AnimationBuilder AnimationBuilder} for more information on how to create programmatic
- * animations.)
+ * Provides programmatic control of a reusable animation sequence,
+ * built using the `build()` method of `AnimationBuilder`. The `build()` method
+ * returns a factory, whose `create()` method instantiates and initializes this interface.
  *
- * \@experimental Animation support is experimental.
+ * @see `AnimationBuilder`
+ * @see `AnimationFactory`
+ * @see `animate()`
+ *
  * @record
  */
 export function AnimationPlayer() { }
-/** @type {?} */
+/**
+ * Provides a callback to invoke when the animation finishes.
+ * \@param fn The callback function.
+ * @see `finish()`
+ * @type {?}
+ */
 AnimationPlayer.prototype.onDone;
-/** @type {?} */
+/**
+ * Provides a callback to invoke when the animation starts.
+ * \@param fn The callback function.
+ * @see `run()`
+ * @type {?}
+ */
 AnimationPlayer.prototype.onStart;
-/** @type {?} */
+/**
+ * Provides a callback to invoke after the animation is destroyed.
+ * \@param fn The callback function.
+ * @see `destroy()`
+ * @see `beforeDestroy()`
+ * @type {?}
+ */
 AnimationPlayer.prototype.onDestroy;
-/** @type {?} */
+/**
+ * Initializes the animation.
+ * @type {?}
+ */
 AnimationPlayer.prototype.init;
-/** @type {?} */
+/**
+ * Reports whether the animation has started.
+ * \@return True if the animation has started, false otherwise.
+ * @type {?}
+ */
 AnimationPlayer.prototype.hasStarted;
-/** @type {?} */
+/**
+ * Runs the animation, invoking the `onStart()` callback.
+ * @type {?}
+ */
 AnimationPlayer.prototype.play;
-/** @type {?} */
+/**
+ * Pauses the animation.
+ * @type {?}
+ */
 AnimationPlayer.prototype.pause;
-/** @type {?} */
+/**
+ * Restarts the paused animation.
+ * @type {?}
+ */
 AnimationPlayer.prototype.restart;
-/** @type {?} */
+/**
+ * Ends the animation, invoking the `onDone()` callback.
+ * @type {?}
+ */
 AnimationPlayer.prototype.finish;
-/** @type {?} */
+/**
+ * Destroys the animation, after invoking the `beforeDestroy()` callback.
+ * Calls the `onDestroy()` callback when destruction is completed.
+ * @type {?}
+ */
 AnimationPlayer.prototype.destroy;
-/** @type {?} */
+/**
+ * Resets the animation to its initial state.
+ * @type {?}
+ */
 AnimationPlayer.prototype.reset;
-/** @type {?} */
+/**
+ * Sets the position of the animation.
+ * \@param position A 0-based offset into the duration, in milliseconds.
+ * @type {?}
+ */
 AnimationPlayer.prototype.setPosition;
-/** @type {?} */
+/**
+ * Reports the current position of the animation.
+ * \@return A 0-based offset into the duration, in milliseconds.
+ * @type {?}
+ */
 AnimationPlayer.prototype.getPosition;
-/** @type {?} */
+/**
+ * The parent of this player, if any.
+ * @type {?}
+ */
 AnimationPlayer.prototype.parentPlayer;
-/** @type {?} */
+/**
+ * The total run time of the animation, in milliseconds.
+ * @type {?}
+ */
 AnimationPlayer.prototype.totalTime;
-/** @type {?|undefined} */
+/**
+ * Provides a callback to invoke before the animation is destroyed.
+ * @type {?|undefined}
+ */
 AnimationPlayer.prototype.beforeDestroy;
 /**
  * \@internal
+ * Internal
  * @type {?|undefined}
  */
 AnimationPlayer.prototype.triggerCallback;
 /**
  * \@internal
+ * Internal
  * @type {?|undefined}
  */
 AnimationPlayer.prototype.disabled;
 /**
- * \@experimental Animation support is experimental.
+ * An empty programmatic controller for reusable animations.
+ * Used internally when animations are disabled, to avoid
+ * checking for the null case when an animation player is expected.
+ *
+ * @see `animate()`
+ * @see `AnimationPlayer`
+ * @see `GroupPlayer`
+ *
  */
 export class NoopAnimationPlayer {
     /**
@@ -158,10 +229,10 @@ export class NoopAnimationPlayer {
      */
     reset() { }
     /**
-     * @param {?} p
+     * @param {?} position
      * @return {?}
      */
-    setPosition(p) { }
+    setPosition(position) { }
     /**
      * @return {?}
      */

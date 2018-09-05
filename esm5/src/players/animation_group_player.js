@@ -10,7 +10,23 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { scheduleMicroTask } from '../util';
-var AnimationGroupPlayer = /** @class */ (function () {
+/**
+ * A programmatic controller for a group of reusable animations.
+ * Used internally to control animations.
+ *
+ * @see `AnimationPlayer`
+ * @see `{\@link animations/group group()}`
+ *
+ */
+var /**
+ * A programmatic controller for a group of reusable animations.
+ * Used internally to control animations.
+ *
+ * @see `AnimationPlayer`
+ * @see `{\@link animations/group group()}`
+ *
+ */
+AnimationGroupPlayer = /** @class */ (function () {
     function AnimationGroupPlayer(_players) {
         var _this = this;
         this._onDoneFns = [];
@@ -257,6 +273,14 @@ var AnimationGroupPlayer = /** @class */ (function () {
     };
     return AnimationGroupPlayer;
 }());
+/**
+ * A programmatic controller for a group of reusable animations.
+ * Used internally to control animations.
+ *
+ * @see `AnimationPlayer`
+ * @see `{\@link animations/group group()}`
+ *
+ */
 export { AnimationGroupPlayer };
 if (false) {
     /** @type {?} */
