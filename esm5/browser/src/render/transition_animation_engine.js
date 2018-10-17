@@ -200,9 +200,6 @@ var AnimationTransitionNamespace = /** @class */ (function () {
             // the event listener is removed AFTER the flush has occurred such
             // that leave animations callbacks can fire (otherwise if the node
             // is removed in between then the listeners would be deregistered)
-            // the event listener is removed AFTER the flush has occurred such
-            // that leave animations callbacks can fire (otherwise if the node
-            // is removed in between then the listeners would be deregistered)
             _this._engine.afterFlush(function () {
                 /** @type {?} */
                 var index = listeners.indexOf(data);
